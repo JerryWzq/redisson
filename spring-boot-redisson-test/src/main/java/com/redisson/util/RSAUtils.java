@@ -5,6 +5,7 @@ import org.apache.commons.io.IOUtils;
 
 import javax.crypto.Cipher;
 import java.io.ByteArrayOutputStream;
+import java.net.URLDecoder;
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
@@ -168,28 +169,62 @@ public class RSAUtils {
     }
 
     public static void main (String[] args) throws Exception {
-        Map<String, String> keyMap = RSAUtils.createKeys(1024);
-        String  publicKey = keyMap.get("publicKey");
-        String  privateKey = keyMap.get("privateKey");
-        System.out.println("公钥: \n\r" + publicKey);
-        System.out.println("私钥： \n\r" + privateKey);
-
-        System.out.println("公钥加密——私钥解密");
-        String str = "站在大明门前守卫的禁卫军，事先没有接到\n" +
-                "有关的命令，但看到大批盛装的官员来临，也就\n" +
-                "以为确系举行大典，因而未加询问。进大明门即\n" +
-                "为皇城。文武百官看到端门午门之前气氛平静，\n" +
-                "城楼上下也无朝会的迹象，既无几案，站队点名\n" +
-                "的御史和御前侍卫“大汉将军”也不见踪影，不免\n" +
-                "心中揣测，互相询问：所谓午朝是否讹传？";
-        System.out.println("\r明文：\r\n" + str);
-        System.out.println("\r明文大小：\r\n" + str.getBytes().length);
-        String encodedData = RSAUtils.publicEncrypt(str, RSAUtils.getPublicKey(publicKey));
-        System.out.println("密文：\r\n" + encodedData);
+//        Map<String, String> keyMap = RSAUtils.createKeys(1024);
+//        String  publicKey = keyMap.get("publicKey");
+//        String  privateKey = keyMap.get("privateKey");
+//        System.out.println("公钥: \n\r" + publicKey);
+//        System.out.println("私钥： \n\r" + privateKey);
+//
+//        System.out.println("公钥加密——私钥解密");
+//        String str = "站在大明门前守卫的禁卫军，事先没有接到\n" +
+//                "有关的命令，但看到大批盛装的官员来临，也就\n" +
+//                "以为确系举行大典，因而未加询问。进大明门即\n" +
+//                "为皇城。文武百官看到端门午门之前气氛平静，\n" +
+//                "城楼上下也无朝会的迹象，既无几案，站队点名\n" +
+//                "的御史和御前侍卫“大汉将军”也不见踪影，不免\n" +
+//                "心中揣测，互相询问：所谓午朝是否讹传？";
+//        System.out.println("\r明文：\r\n" + str);
+//        System.out.println("\r明文大小：\r\n" + str.getBytes().length);
+//        String encodedData = RSAUtils.publicEncrypt(str, RSAUtils.getPublicKey(publicKey));
+//        System.out.println("密文：\r\n" + encodedData);
 //        String decodedData = RSAUtils.privateDecrypt(encodedData, RSAUtils.getPrivateKey(privateKey));
 //        System.out.println("解密后文字: \r\n" + decodedData);
-        String decrypt = RSAUtils.publicDecrypt(encodedData, RSAUtils.getPublicKey(publicKey));
-        System.err.println("解密后文字: \r\n" + decrypt);
+
+
+//        String user = "eyJjcmVhdGVUaW1lIjoxNTM0OTkzNjkzMDAwLCJpZCI6NDExLCJtb2RpZnlUaW1lIjoxNTM0OTkzNjkzMDAwLCJzdGF0dXMiOjEsInVzZXJDb2RlIjoiODkwMDU3MDciLCJ1c2VyTmFtZSI6IuWQtOW/l+W8uiJ9";
+//        String s = new String(Base64.decodeBase64(user));
+//        System.out.println(s);
+//
+//        String s1 = Base64.encodeBase64String(s.getBytes());
+//        System.out.println(">>>>>" + s1);
+//
+//        String encode = URLEncoder.encode(s1, "utf-8");
+//        System.err.println(">>>>>" + encode);
+//
+//        String u    = "eyJjcmVhdGVUaW1lIjoxNTM0OTkzNjkzMDAwLCJpZCI6NDExLCJtb2RpZnlUaW1lIjoxNTM0OTkzNjkzMDAwLCJzdGF0dXMiOjEsInVzZXJDb2RlIjoiODkwMDU3MDciLCJ1c2VyTmFtZSI6IuWQtOW%2FlW8u77%2B977%2B9";
+//        String decode = URLDecoder.decode(u, "utf-8");
+//        String u1 = new String(Base64.decodeBase64(decode));
+//        System.out.println(user.equals(decode));
+//        System.out.println(u1);
+
+
+//        String txt = "eyJjcmVhdGVUaW1lIjoxNTM0OTkzNjkzMDAwLCJpZCI6NDExLCJtb2RpZnlUaW1lIjoxNTM0OTkzNjkzMDAwLCJzdGF0dXMiOjEsInVzZXJDb2RlIjoiODkwMDU3MDciLCJ1c2VyTmFtZSI6IuWQtOW%2Fl%2BW8uiJ9";
+//        String decode = URLDecoder.decode(txt, "UTF-8");
+//        System.out.println(decode);
+//        byte[] bytes = Base64.decodeBase64(decode);
+//        String s2 = new String(bytes, "UTF-8");
+//        System.out.println(s2);
+//
+//        String user = "eyJpZCI6NDExLCJzdGF0dXMiOiIxIiwidXNlckNvZGUiOiI4OTAwNTcwNyIsInVzZXJOYW1lIjoi5ZC077+977+9by7vv73vv70=";
+//        byte[] bytes1 = Base64.decodeBase64(user);
+//        String s = new String(bytes1);
+//        System.out.println(s);
+
+        String decode = URLDecoder.decode("eyJpZCI6NDExLCJzdGF0dXMiOiIxIiwidXNlckNvZGUiOiI4OTAwNTcwNyIsInVzZXJOYW1lIjoi5ZC077%2B977%2B9by7vv73vv70%3D", "UTF-8");
+        System.out.println(decode);
+        String s1 = new String(Base64.decodeBase64(decode), "UTF-8");
+        System.out.println(s1);
+
     }
 
 }

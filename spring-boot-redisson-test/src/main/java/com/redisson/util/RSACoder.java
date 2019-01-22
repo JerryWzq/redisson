@@ -2,13 +2,12 @@ package com.redisson.util;
 
 import org.apache.commons.codec.binary.Base64;
 
+import javax.crypto.Cipher;
 import java.security.*;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.crypto.Cipher;
  
 /**
  * Created by humf.需要依赖 commons-codec 包 
@@ -17,8 +16,8 @@ public class RSACoder {
     public static final String KEY_ALGORITHM = "RSA";
     public static final String SIGNATURE_ALGORITHM = "MD5withRSA";
  
-    private static final String PUBLIC_KEY = "RSAPublicKey";
-    private static final String PRIVATE_KEY = "RSAPrivateKey";
+    private static final String PUBLIC_KEY = "publickey";
+    private static final String PRIVATE_KEY = "privatekey";
  
     public static byte[] decryptBASE64(String key) {
         return Base64.decodeBase64(key);
@@ -218,33 +217,36 @@ public class RSACoder {
     }
     
     public static void main(String[] args) throws Exception {
-        Map<String, Key> keyMap = initKey();
-        String publicKey = getPublicKey(keyMap);
-        String privateKey = getPrivateKey(keyMap);
-        
-        System.out.println(keyMap);
-        System.out.println("-----------------------------------");
-        System.out.println(publicKey);
-        System.out.println("-----------------------------------");
-        System.out.println(privateKey);
-        System.out.println("-----------------------------------");
-        byte[] encryptByPrivateKey = encryptByPrivateKey("123456".getBytes(),privateKey);
-        byte[] encryptByPublicKey = encryptByPublicKey("123456",publicKey);
-        System.out.println(new String(encryptByPrivateKey));
-        System.out.println("-----------------------------------");
-        System.out.println(new String(encryptByPublicKey));
-        System.out.println("-----------------------------------");
-        String sign = sign(encryptByPrivateKey,privateKey);
-        System.out.println(sign);
-        System.out.println("-----------------------------------");
-        boolean verify = verify(encryptByPrivateKey,publicKey,sign);
-        System.out.println(verify);
-        System.out.println("-----------------------------------");
-        byte[] decryptByPublicKey = decryptByPublicKey(encryptByPrivateKey,publicKey);
-        byte[] decryptByPrivateKey = decryptByPrivateKey(encryptByPublicKey,privateKey);
-        System.out.println(new String(decryptByPublicKey));
-        System.out.println("-----------------------------------");
-        System.out.println(new String(decryptByPrivateKey));
-        
+//        Map<String, Key> keyMap = initKey();
+//        String publicKey = getPublicKey(keyMap);
+//        String privateKey = getPrivateKey(keyMap);
+//
+//        System.out.println(keyMap);
+//        System.out.println("-----------------------------------");
+//        System.out.println(">>>>>" + publicKey);
+//        System.out.println("-----------------------------------");
+//        System.out.println("=====" + privateKey);
+//        System.out.println("-----------------------------------");
+//        byte[] encryptByPrivateKey = encryptByPrivateKey("123456".getBytes(),privateKey);
+//        byte[] encryptByPublicKey = encryptByPublicKey("123456",publicKey);
+//        System.out.println(new String(encryptByPrivateKey));
+//        System.out.println("-----------------------------------");
+//        System.out.println(new String(encryptByPublicKey));
+//        System.out.println("-----------------------------------");
+//        String sign = sign(encryptByPrivateKey,privateKey);
+//        System.out.println(sign);
+//        System.out.println("-----------------------------------");
+//        boolean verify = verify(encryptByPrivateKey,publicKey,sign);
+//        System.out.println(verify);
+//        System.out.println("-----------------------------------");
+//        byte[] decryptByPublicKey = decryptByPublicKey(encryptByPrivateKey,publicKey);
+//        byte[] decryptByPrivateKey = decryptByPrivateKey(encryptByPublicKey,privateKey);
+//        System.out.println(new String(decryptByPublicKey));
+//        System.out.println("-----------------------------------");
+//        System.out.println(new String(decryptByPrivateKey));
+//
+
+
+
     }
 }
